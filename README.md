@@ -86,27 +86,27 @@ $$
 
 The coefficients are obtained with `numpy.linalg.solve` from
 
-$$
+```math
 \begin{bmatrix}
-1&0&0&0\\
-0&1&0&0\\
-1&T&T^2&T^3\\
-0&1&2T&3T^2
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+1 & T & T^2 & T^3 \\
+0 & 1 & 2T & 3T^2
 \end{bmatrix}
 \begin{bmatrix}
-\alpha_0\\
-\alpha_1\\
-\alpha_2\\
+\alpha_0 \\
+\alpha_1 \\
+\alpha_2 \\
 \alpha_3
 \end{bmatrix}
 =
 \begin{bmatrix}
-0\\
-0\\
-D\\
+0 \\
+0 \\
+D \\
 0
-\end{bmatrix}.
-$$
+\end{bmatrix}
+```
 
 For the tested experiment, $D=1.00\,\mathrm{m}$ and $T=13\,\mathrm{s}$. Thus,
 
@@ -146,7 +146,10 @@ self.cmd_pub = self.create_publisher(Twist, "/cmd_vel", 10)
 During CHASING, longitudinal motion uses cubic feedforward plus odometry position feedback:
 
 $$
-v_x=\operatorname{sat}\left(v_{\mathrm{ref}}+K_x(x_{\mathrm{ref}}-x_{\mathrm{actual}})\right).
+v_x=\mathrm{sat}\left(
+v_{\mathrm{ref}}+
+K_x(x_{\mathrm{ref}}-x_{\mathrm{actual}})
+\right)
 $$
 
 The camera bearing supplies angular correction when the bearing exceeds the controller deadband. The lateral command is zero.
